@@ -21,3 +21,6 @@ def order_by_available(n: DFSVertex) -> list[DFSVertex]:
     res_list.sort(key=lambda x: x[0])
     return [y[1] for y in res_list]
 ```
+
+在[Algorithm](Algorithm/)中，上传了个人认为比较有记录意义的经典题型。题目来自[LeetCode 基础50题](https://leetcode.cn/studyplan/programming-skills/)、[LeetCode Hot100题](https://leetcode.cn/studyplan/top-100-liked/)。
+正在持续刷题中，会持续将经典题、思路巧妙题、死记硬背等题型进行上传。其中里面包含自己的思路分析，以供复习或交流使用。
