@@ -1,4 +1,4 @@
-from LinearStructure.Queue import Queue
+from DataStructure.LinearStructure.Queue import Queue
 
 
 def joseph_order(namelist: list[str], num) -> str:

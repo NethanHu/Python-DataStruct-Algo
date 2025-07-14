@@ -1,4 +1,4 @@
-from Tree.LinkedTree import BinaryTree
+from LinkedTree import BinaryTree
 
 
 def preorder_traversal(tree: BinaryTree):
