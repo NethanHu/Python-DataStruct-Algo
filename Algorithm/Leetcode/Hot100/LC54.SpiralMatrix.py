@@ -10,57 +10,34 @@ from typing import List
 
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        h: int = len(matrix)
-        w: int = len(matrix[0])
-        ans: List[int] = []
-        x, y = 0, 0  # x是行坐标，y是列坐标
-        while True:
-            stop: bool = True
-            # 往右边走，直到碰到边界或者是无穷就停下换方向
-            while y <= w:
-                if y == w or matrix[x][y] == math.inf:
-                    y -= 1
-                    x += 1
-                    break
-                stop = False
-                ans.append(matrix[x][y])
-                matrix[x][y] = math.inf
+        x, y, m, n = 0, 0, len(matrix), len(matrix[0])
+        ans: List[int] = [matrix[0][0]]  # 只要先排除了第一个元素，之后的元素都满足下方的循环
+        matrix[0][0] = '#'
+        can_move: bool = True
+        while can_move:
+            can_move = False  # 如果下面所有的while都没有进入过，说明此时已经可以结束了
+            while y < n - 1 and matrix[x][y + 1] != '#':
                 y += 1
-            # 往下边走，直到碰到边界或者是无穷就停下换方向
-            while x <= h:
-                if x == h or matrix[x][y] == math.inf:
-                    x -= 1
-                    y -= 1
-                    break
-                stop = False
                 ans.append(matrix[x][y])
-                matrix[x][y] = math.inf
+                matrix[x][y] = '#'
+                can_move = True
+
+            while x < m - 1 and matrix[x + 1][y] != '#':
                 x += 1
-            # 往左边走，直到碰到边界或者是无穷就停下换方向
-            while y <= w:
-                if y == -1 or matrix[x][y] == math.inf:
-                    y += 1
-                    x -= 1
-                    break
-                stop = False
                 ans.append(matrix[x][y])
-                matrix[x][y] = math.inf
+                matrix[x][y] = '#'
+                can_move = True
+
+            while y > -1 and matrix[x][y - 1] != '#':
                 y -= 1
-            # 往上边走，直到碰到边界或者是无穷就停下换方向
-            while x <= h:
-                if x == -1 or matrix[x][y] == math.inf:
-                    x += 1
-                    y += 1
-                    break
-                stop = False
                 ans.append(matrix[x][y])
-                matrix[x][y] = math.inf
+                matrix[x][y] = '#'
+                can_move = True
+
+            while x > -1 and matrix[x - 1][y] != '#':
                 x -= 1
-            if stop:
-                break
+                ans.append(matrix[x][y])
+                matrix[x][y] = '#'
+                can_move = True
+
         return ans
-
-
-if __name__ == '__main__':
-    s = Solution()
-    print(s.spiralOrder([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]))
